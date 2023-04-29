@@ -31,32 +31,32 @@ def upload_file(request):
 @api_view(['POST'])
 def download_file(request):
     storage_type = request.POST.get('storage_type')
-    file_name = request.POST.get('file_name')
+    file_identifier = request.POST.get('file_identifier')
 
-    if storage_type is None or file_name is None:
-        return Response({"error": "storage_type and file_name are required"}, status=status.HTTP_400_BAD_REQUEST)
+    if storage_type is None or file_identifier is None:
+        return Response({"error": "storage_type and file_identifier are required"}, status=status.HTTP_400_BAD_REQUEST)
 
     if storage_type == 'azure':
-        file = download.download_from_azure_storage(file_name)
+        file = download.download_from_azure_storage(file_identifier)
     elif storage_type == 'ipfs':
-        file = download.download_from_ipfs_storage(file_name)
+        file = download.download_from_ipfs_storage(file_identifier)
     else:
         return Response({"error": "Invalid storage type"}, status=status.HTTP_400_BAD_REQUEST)
 
-    return FileResponse(file, as_attachment=True, filename=file_name)
+    return FileResponse(file, as_attachment=True, filename=file_identifier)
 
 @api_view(['POST'])
 def delete_file(request):
     storage_type = request.POST.get('storage_type')
-    file_name = request.POST.get('file_name')
+    file_identifier = request.POST.get('file_identifier')
 
-    if storage_type is None or file_name is None:
-        return Response({"error": "storage_type and file_name are required"}, status=status.HTTP_400_BAD_REQUEST)
+    if storage_type is None or file_identifier is None:
+        return Response({"error": "storage_type and file_identifier are required"}, status=status.HTTP_400_BAD_REQUEST)
 
     if storage_type == 'azure':
-        delete.delete_from_azure_storage(file_name)
+        delete.delete_from_azure_storage(file_identifier)
     elif storage_type == 'ipfs':
-        delete.delete_from_ipfs_storage(file_name)
+        delete.delete_from_ipfs_storage(file_identifier)
     else:
         return Response({"error": "Invalid storage type"}, status=status.HTTP_400_BAD_REQUEST)
 

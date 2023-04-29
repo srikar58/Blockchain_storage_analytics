@@ -4,12 +4,12 @@ from azure.storage.blob import BlobServiceClient
 from django.conf import settings
 
 # Download from Azure Blob Storage
-def download_from_azure_storage(file_name):
+def download_from_azure_storage(file_identifier):
     connection_string = settings.AZURE_STORAGE_CONNECTION_STRING
     container_name = "your-container-name"
     blob_service_client = BlobServiceClient.from_connection_string(connection_string)
     container_client = blob_service_client.get_container_client(container_name)
-    blob_client = container_client.get_blob_client(file_name)
+    blob_client = container_client.get_blob_client(file_identifier)
     
     stream = io.BytesIO()
     blob_data = blob_client.download_blob()
@@ -19,12 +19,12 @@ def download_from_azure_storage(file_name):
     return stream
 
 # Download from IPFS using Pinata
-def download_from_ipfs_storage(file_name):
+def download_from_ipfs_storage(file_identifier):
     pinata_api_key = settings.PINATA_API_KEY
     pinata_secret_api_key = settings.PINATA_SECRET_API_KEY
 
-    # Assuming the file_name is the IPFS hash
-    ipfs_hash = file_name
+    # Assuming the file_identifier is the IPFS hash
+    ipfs_hash = file_identifier
 
     # Build the URL to download the file from the IPFS gateway
     url = f"https://gateway.pinata.cloud/ipfs/{ipfs_hash}"
