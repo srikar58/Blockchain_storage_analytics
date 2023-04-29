@@ -2,6 +2,18 @@
 
 This Django project is an API implementation for comparing the performance analytics of public cloud storage and IPFS using various parameters. The project is created for a blockchain class to explore the differences in performance between centralized cloud storage providers and decentralized IPFS storage.
 
+## Contributors
+
+A special thanks to the following people who have contributed to this project:
+
+- [Manish Kumar Reddy Gangula](https://github.com/manish0490)
+- [Jaswanth Reddy Kankanala](https://github.com/jaswanth-reddy)
+- [Srikar Chowdary Kantamani](https://github.com/srikar58)
+
+Feel free to add your name to the list if you have contributed to the project. To do so, edit this file and submit a pull request.
+
+
+
 ## Features
 
 - Upload files to Azure Blob Storage or IPFS using Pinata
